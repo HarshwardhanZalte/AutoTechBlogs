@@ -150,7 +150,7 @@ def run_blog_generation_pipeline():
     if not articles:
         logger.warning("No articles fetched. Pipeline ending.")
         return {"status": "no_articles", "new_blogs": 0}
-
+    print(articles)
     new_blogs_count = 0
     for article in articles:
         source_url = article.get('url')

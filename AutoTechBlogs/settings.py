@@ -19,8 +19,8 @@ load_dotenv(BASE_DIR / '.env')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-fallback-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# os.environ.get('DEBUG', 'False') == 
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
 ALLOWED_HOSTS = []
 
 
@@ -120,9 +120,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Add this to find static files inside our 'blogs' app
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# We can comment this out, as our static files are correctly found
+# within the 'blogs' app (thanks to 'APP_DIRS': True in TEMPLATES)
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
 
 
 # Default primary key field type

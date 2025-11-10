@@ -60,7 +60,8 @@ class GenerateBlogsAPI(APIView):
         Handles the GET request to trigger the pipeline.
         """
         try:
-            result = run_blog_generation_pipeline()
+            result = run_blog_generation_
+            pipeline()
             return Response(result, status=status.HTTP_200_OK)
         except Exception as e:
             return Response(
