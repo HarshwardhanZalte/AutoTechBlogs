@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoTechBlogs</title>
+    <!-- Google Fonts: Fira Code for a 'tech' feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'blogs/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{% url 'blogs:home' %}" class="nav-logo">
+                <span class="nav-logo-bracket">[</span>AutoTechBlogs<span class="nav-logo-bracket">]</span>
+            </a>
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <!-- Icon will be inserted by JS -->
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; {% now "Y" %} AutoTechBlogs. AI-Generated Content.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Dark/Light Mode Toggle ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme');
+        const sunIcon = '☀️';
+        const moonIcon = '🌙';
+
+        function setInitialTheme() {
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggleBtn.textContent = sunIcon;
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = moonIcon;
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            let theme = 'light';
+            if (document.body.classList.contains('dark-mode')) {
+                theme = 'dark';
+                themeToggleBtn.textContent = sunIcon;
+            } else {
+                themeToggleBtn.textContent = moonIcon;
+            }
+            localStorage.setItem('theme', theme);
+        });
+
+        // Set the theme on initial load
+        setInitialTheme();
+
+        // --- CSRF Token Helper for Fetch API ---
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+    </script>
+    
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>
