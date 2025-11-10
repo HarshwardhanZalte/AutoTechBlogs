@@ -14,7 +14,7 @@ This is a complete full-stack Django application that automatically fetches tren
 - Full blog detail page.
 - Dynamic, asynchronous comment system.
 
-Design:
+### Design:
 - Modern, tech-inspired "neon" aesthetic.
 - Dark Mode & Light Mode toggle.
 - Responsive design for mobile and desktop.
