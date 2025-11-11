@@ -94,3 +94,14 @@ class CommentCreateAPI(generics.CreateAPIView):
         blog_id = self.request.data.get('blog')
         blog = get_object_or_404(Blog, id=blog_id)
         serializer.save(blog=blog)
+        
+        
+class CORNJOBAPI(APIView):
+    """
+    API endpoint to trigger
+    """
+    def get(self, request, *args, **kwargs):
+        try:
+            return Response({"status": "success"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"status": "error", "message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

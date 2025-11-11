@@ -18,7 +18,7 @@ def fetch_gnews_articles():
         logger.error("GNEWS_API_KEY not found in settings.")
         return []
 
-    url = f"https://gnews.io/api/v4/top-headlines?topic=technology&lang=en&max=3&apikey={api_key}"
+    url = f"https://gnews.io/api/v4/top-headlines?topic=technology&lang=en&max=1&apikey={api_key}"
     
     try:
         response = requests.get(url)
@@ -150,7 +150,7 @@ def run_blog_generation_pipeline():
     if not articles:
         logger.warning("No articles fetched. Pipeline ending.")
         return {"status": "no_articles", "new_blogs": 0}
-    print(articles)
+    # print(articles)
     new_blogs_count = 0
     for article in articles:
         source_url = article.get('url')

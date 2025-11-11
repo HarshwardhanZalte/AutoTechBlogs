@@ -13,4 +13,5 @@ urlpatterns = [
     path('api/blogs/', views.BlogListAPI.as_view(), name='api_blog_list'),
     path('api/blogs/<int:pk>/', views.BlogDetailAPI.as_view(), name='api_blog_detail'),
     path('api/comments/', views.CommentCreateAPI.as_view(), name='api_comment_create'),
+    path('api/jobs/', views.CORNJOBAPI.as_view(), name='api_cronjob'),
 ]
