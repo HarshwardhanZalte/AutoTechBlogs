@@ -123,8 +123,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-
+# STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Add this to find static files inside our 'blogs' app
 # We can comment this out, as our static files are correctly found
 # within the 'blogs' app (thanks to 'APP_DIRS': True in TEMPLATES)
