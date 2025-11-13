@@ -9,7 +9,7 @@ class BlogAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'blog_title', 'created_at')
+    list_display = ('name', 'blog_title', 'message', 'created_at')
     list_filter = ('created_at',)
     search_fields = ('name', 'message')
 
