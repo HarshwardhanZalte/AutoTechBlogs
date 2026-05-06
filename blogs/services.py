@@ -79,7 +79,7 @@ def generate_blog_from_article(article):
     # Note: We are using a specific model preview that supports JSON mode.
     # Update this model as new versions are released.
     model = genai.GenerativeModel(
-        "gemini-2.5-flash-preview-09-2025",
+        "gemini-2.5-flash-lite",
         generation_config=generation_config
     )
 
